@@ -60,6 +60,22 @@ class _WorldStatusState extends State<WorldStatus>
                   ),
                 ),
               ),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.07,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: const Center(child: Text(
+                  "Track Countries",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                  ),
+                ),
+                ),
+              ),
             ],
           ),
         ),
