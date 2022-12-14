@@ -7,7 +7,7 @@ class worldStatesServices
 {
   Future<WorldStatesModel> getWorldStatesRecord() async
   {
-    final Response = await http.get(Uri.parse("https://disease.sh/v3/covid-19/all"));
+    final Response = await http.get(Uri.parse(App_URl.worldStates));
 
     if(Response.statusCode == 200)
       {
