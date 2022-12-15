@@ -20,4 +20,23 @@ class worldStatesServices
         throw Exception("No Data Found");
       }
   }
+
+  Future<List<dynamic>> getCountriesData() async
+  {
+    var data;
+
+    final Response = await http.get(Uri.parse(App_URl.countriesList));
+
+    if(Response.statusCode == 200)
+    {
+      data = jsonDecode(Response.body);
+
+      return data;
+    }
+    else
+    {
+      throw Exception("No Data Found");
+    }
+  }
+
 }
