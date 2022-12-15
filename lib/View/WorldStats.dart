@@ -68,11 +68,23 @@ class _WorldStatusState extends State<WorldStatus> with TickerProviderStateMixin
                             "Death": double.parse(snapshot.data!.deaths.toString()),
                           },
                           chartValuesOptions: const ChartValuesOptions(
-                            showChartValuesInPercentage: true
+                            showChartValuesInPercentage: true,
+                            showChartValueBackground: true,
+                            showChartValues: true,
+                            showChartValuesOutside: true,
+                            decimalPlaces: 1,
                           ),
+                          chartLegendSpacing: 32,
                           chartType: ChartType.ring,
+                          initialAngleInDegree: 0,
+                          ringStrokeWidth: 20,
                           legendOptions: const LegendOptions(
                             legendPosition: LegendPosition.left,
+                            showLegendsInRow: false,
+                            showLegends: true,
+                            legendTextStyle: TextStyle(
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           animationDuration: const Duration(milliseconds: 2000),
                           colorList: colorList,
