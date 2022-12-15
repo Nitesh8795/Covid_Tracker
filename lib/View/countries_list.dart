@@ -28,6 +28,12 @@ class _CountriesListState extends State<CountriesList>
               padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 0.0, bottom: 10.0),
               child: TextFormField(
                 controller: _searchController,
+                onChanged: (value)
+                {
+                  setState(() {
+
+                  });
+                },
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(horizontal: 20),
                   hintText: "Search with name of country",
@@ -74,21 +80,48 @@ class _CountriesListState extends State<CountriesList>
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index)
                         {
-                          return Column(
-                            children: [
-                              ListTile(
-                                title: Text(snapshot.data![index]['country']),
-                                subtitle: Text(snapshot.data![index]['cases'].toString()),
-                                leading: Image(
-                                  height: 60,
-                                  width: 60,
-                                  image: NetworkImage(
-                                      snapshot.data![index]['countryInfo']['flag']
-                                  ),
-                                ),
-                              )
-                            ],
-                          );
+                          String name = snapshot.data![index]['country'];
+
+                          if(_searchController.text.isEmpty)
+                            {
+                              return Column(
+                                children: [
+                                  ListTile(
+                                    title: Text(snapshot.data![index]['country']),
+                                    subtitle: Text(snapshot.data![index]['cases'].toString()),
+                                    leading: Image(
+                                      height: 60,
+                                      width: 60,
+                                      image: NetworkImage(
+                                          snapshot.data![index]['countryInfo']['flag']
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              );
+                            }
+                          else if(name.toLowerCase().contains(_searchController.text.toLowerCase()))
+                            {
+                              return Column(
+                                children: [
+                                  ListTile(
+                                    title: Text(snapshot.data![index]['country']),
+                                    subtitle: Text(snapshot.data![index]['cases'].toString()),
+                                    leading: Image(
+                                      height: 60,
+                                      width: 60,
+                                      image: NetworkImage(
+                                          snapshot.data![index]['countryInfo']['flag']
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              );
+                            }
+                          else
+                            {
+                              return Container();
+                            }
                         },
                       );
                     }
