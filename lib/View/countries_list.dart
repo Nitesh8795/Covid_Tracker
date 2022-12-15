@@ -7,9 +7,36 @@ class CountriesList extends StatefulWidget {
   State<CountriesList> createState() => _CountriesListState();
 }
 
-class _CountriesListState extends State<CountriesList> {
+class _CountriesListState extends State<CountriesList>
+{
+  TextEditingController _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      ),
+      body: SafeArea(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: TextFormField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                  hintText: "Search with name of country",
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  )
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
