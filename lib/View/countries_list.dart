@@ -1,6 +1,7 @@
 import 'package:covid_tracker/Services/states_services.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:covid_tracker/View/detail_screen.dart';
 
 class CountriesList extends StatefulWidget {
   const CountriesList({Key? key}) : super(key: key);
@@ -84,38 +85,72 @@ class _CountriesListState extends State<CountriesList>
 
                           if(_searchController.text.isEmpty)
                             {
-                              return Column(
-                                children: [
-                                  ListTile(
-                                    title: Text(snapshot.data![index]['country']),
-                                    subtitle: Text(snapshot.data![index]['cases'].toString()),
-                                    leading: Image(
-                                      height: 60,
-                                      width: 60,
-                                      image: NetworkImage(
-                                          snapshot.data![index]['countryInfo']['flag']
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                    context, MaterialPageRoute(builder: (context) => DetailScreen(
+                                    title: snapshot.data![index]['country'],
+                                    totalCases: snapshot.data![index]['cases'].toString(),
+                                    todayCases: snapshot.data![index]['todayCases'].toString(),
+                                    recovered: snapshot.data![index]['recovered'].toString(),
+                                    death: snapshot.data![index]['death'].toString(),
+                                    critical: snapshot.data![index]['critical'].toString(),
+                                    todayRecovered: snapshot.data![index]['todayRecovered'].toString(),
+                                    images: snapshot.data![index]['countryInfo']['flag'].toString()
+                                  ))
+
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(snapshot.data![index]['country']),
+                                      subtitle: Text(snapshot.data![index]['cases'].toString()),
+                                      leading: Image(
+                                        height: 60,
+                                        width: 60,
+                                        image: NetworkImage(
+                                            snapshot.data![index]['countryInfo']['flag']
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
+                                    )
+                                  ],
+                                ),
                               );
                             }
                           else if(name.toLowerCase().contains(_searchController.text.toLowerCase()))
                             {
-                              return Column(
-                                children: [
-                                  ListTile(
-                                    title: Text(snapshot.data![index]['country']),
-                                    subtitle: Text(snapshot.data![index]['cases'].toString()),
-                                    leading: Image(
-                                      height: 60,
-                                      width: 60,
-                                      image: NetworkImage(
-                                          snapshot.data![index]['countryInfo']['flag']
+                              return GestureDetector(
+                                onTap: (){
+                                  Navigator.push(
+                                      context, MaterialPageRoute(builder: (context) => DetailScreen(
+                                      title: snapshot.data![index]['country'],
+                                      totalCases: snapshot.data![index]['cases'].toString(),
+                                      todayCases: snapshot.data![index]['todayCases'].toString(),
+                                      recovered: snapshot.data![index]['recovered'].toString(),
+                                      death: snapshot.data![index]['death'].toString(),
+                                      critical: snapshot.data![index]['critical'].toString(),
+                                      todayRecovered: snapshot.data![index]['todayRecovered'].toString(),
+                                      images: snapshot.data![index]['countryInfo']['flag'].toString()
+                                  ))
+
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    ListTile(
+                                      title: Text(snapshot.data![index]['country']),
+                                      subtitle: Text(snapshot.data![index]['cases'].toString()),
+                                      leading: Image(
+                                        height: 60,
+                                        width: 60,
+                                        image: NetworkImage(
+                                            snapshot.data![index]['countryInfo']['flag']
+                                        ),
                                       ),
-                                    ),
-                                  )
-                                ],
+                                    )
+                                  ],
+                                ),
                               );
                             }
                           else
